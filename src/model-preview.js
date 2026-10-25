@@ -10,7 +10,8 @@ document.querySelector('#language').addEventListener('click', () => { locale = l
 applyLanguage()
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
-const manifest = await fetch('/models/characters.json').then(r => r.json())
+import { asset } from './paths.js'
+const manifest = await fetch(asset('models/characters.json')).then(r => r.json())
 const loader = new GLTFLoader(), views = [], clock = new THREE.Clock()
 const colors = [0xebeee3, 0xe8eee4, 0xf1eade, 0xe8ebe4]
 window.previewState = { loaded: 0, animation: 'idle', characters: [] }
@@ -32,7 +33,7 @@ for (const [i, info] of manifest.characters.entries()) {
   const ground = new THREE.Mesh(new THREE.PlaneGeometry(200,200),new THREE.ShadowMaterial({opacity:.09}));ground.rotation.x=-Math.PI/2;ground.position.y=-.09;ground.receiveShadow=true;scene.add(ground)
   const view = { renderer, scene, camera, controls, mixer: null, actions: {}, action: null }; views.push(view)
   const resize = () => { const w=element.clientWidth,h=element.clientHeight; renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix() };new ResizeObserver(resize).observe(element);resize()
-  loader.load(info.url, gltf => {
+  loader.load(asset(info.url), gltf => {
     const model=gltf.scene, box=new THREE.Box3().setFromObject(model), size=box.getSize(new THREE.Vector3()), center=box.getCenter(new THREE.Vector3())
     const scale=1.7/size.y; model.scale.setScalar(scale);model.position.set(-center.x*scale,-box.min.y*scale,-center.z*scale)
     model.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true}});scene.add(model)

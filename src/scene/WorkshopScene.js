@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { clone as cloneSkeleton } from 'three/addons/utils/SkeletonUtils.js';
+import { asset } from '../paths.js';
 
 // A small, fixed-camera workshop. Coordinates: +X right, +Y up, +Z front.
 const COLORS = {
@@ -559,13 +560,13 @@ export function createWorkshopScene(container, { onMove, onReady } = {}) {
   }
   async function loadCharacters() {
     try {
-      const response = await fetch('/models/characters.json', { signal: abortController.signal, cache: 'no-cache' });
+      const response = await fetch(asset('models/characters.json'), { signal: abortController.signal, cache: 'no-cache' });
       if (!response.ok) throw new Error('Character models are not available yet.');
       const manifest = await response.json();
       if (!Array.isArray(manifest.characters) || !manifest.characters.length) throw new Error('No characters in manifest.');
       await Promise.all(manifest.characters.map(async (entry) => {
         if (!modelLoads.has(entry.url)) {
-          const promise = loader.loadAsync(entry.url).then((gltf) => {
+          const promise = loader.loadAsync(asset(entry.url)).then((gltf) => {
             if (disposed) { releaseObject(gltf.scene); throw new DOMException('Scene disposed', 'AbortError'); }
             trackModelResources(gltf.scene); return gltf;
           }).catch((error) => { modelLoads.delete(entry.url); throw error; });
