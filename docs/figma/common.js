@@ -1,0 +1,36 @@
+// Figma Plugin API helpers, adapted from the generate-library documentation helpers.
+const created = [];
+const track = n => (created.push(n.id), n);
+const rgb = hex => ({r:parseInt(hex.slice(1,3),16)/255,g:parseInt(hex.slice(3,5),16)/255,b:parseInt(hex.slice(5,7),16)/255});
+const C = {paper:'#fbfcf8',canvas:'#f6f6f2',green:'#3d5c48',greenLight:'#edf2ec',ink:'#292d29',muted:'#80847d',line:'#e5e7e0',studio:'#eeefe7',soft:'#f0f3e9',danger:'#b26450',white:'#ffffff'};
+await Promise.all(['Regular','Medium','Semi Bold','Bold'].map(style=>figma.loadFontAsync({family:'Inter',style})));
+await Promise.all(['Regular','Medium'].map(style=>figma.loadFontAsync({family:'Noto Sans SC',style})));
+const vars=await figma.variables.getLocalVariablesAsync();
+const variable = name => vars.find(v=>v.name===name);
+const styles=await figma.getLocalTextStylesAsync();
+const paint=(key,stroke=false)=>{
+ let p={type:'SOLID',color:rgb(C[key]||key)};
+ const v=variable('semantic/'+({greenLight:'green-light'}[key]||key));
+ if(v)p=figma.variables.setBoundVariableForPaint(p,'color',v);
+ return p;
+};
+const fill=(n,key)=>{n.fills=[paint(key)];return n;};
+const text=(parent,value,size=14,key='ink',weight='Regular',width)=>{
+ const n=track(figma.createText());n.name=String(value).slice(0,70);
+ n.fontName={family:/[\u3400-\u9fff]/.test(String(value))?'Noto Sans SC':'Inter',style:weight==='Semi Bold'&&/[\u3400-\u9fff]/.test(String(value))?'Medium':weight};
+ n.characters=String(value);n.fontSize=size;n.lineHeight={unit:'PERCENT',value:145};fill(n,key);parent.appendChild(n);
+ const st=styles.find(s=>s.name===`Type/${size}/${weight}`);if(st&&n.fontName.family==='Inter')n.textStyleId=st.id;
+ if(width){n.textAutoResize='HEIGHT';n.resize(width,n.height);}
+ return n;
+};
+const stack=(parent,name,width,gap=16,key=null,horizontal=false)=>{
+ const n=track(figma.createAutoLayout(horizontal?'HORIZONTAL':'VERTICAL'));n.name=name;n.fills=key?[paint(key)]:[];n.itemSpacing=gap;n.primaryAxisAlignItems='MIN';n.counterAxisAlignItems='MIN';
+ if(width)n.resize(width,1);if(parent)parent.appendChild(n);n.primaryAxisSizingMode='AUTO';n.counterAxisSizingMode='FIXED';return n;
+};
+const pad=(n,p)=>{n.paddingTop=n.paddingBottom=n.paddingLeft=n.paddingRight=p;return n;};
+const rect=(parent,name,w,h,key,r=0)=>{const n=track(figma.createRectangle());n.name=name;n.resize(w,h);fill(n,key);n.cornerRadius=r;parent.appendChild(n);return n;};
+const card=(parent,name,w=360)=>{const n=stack(parent,name,w,12,'white');pad(n,24);n.cornerRadius=8;n.strokes=[paint('line')];return n;};
+const doc=(name,title,desc,w=1440)=>{const root=stack(figma.currentPage,name,w,36,'paper');pad(root,56);root.x=160;root.y=120;text(root,'TOGETHER, APART  /  PROJECT ASSET LIBRARY',11,'green','Medium');text(root,title,40,'ink','Medium',w-112);text(root,desc,16,'muted','Regular',w-112);return root;};
+const section=(root,title,desc)=>{const s=stack(root,title,root.width-root.paddingLeft-root.paddingRight,18);text(s,title,24,'ink','Medium',s.width);if(desc)text(s,desc,14,'muted','Regular',s.width);return s;};
+const imageNode=(parent,name,hash,w,h)=>{const n=track(figma.createRectangle());n.name=name;n.resize(w,h);n.fills=[{type:'IMAGE',imageHash:hash,scaleMode:'FIT'}];parent.appendChild(n);return n;};
+const finish=(extra={})=>({createdNodeIds:created,nodeCount:created.length,...extra});

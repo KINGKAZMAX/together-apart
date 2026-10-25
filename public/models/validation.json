@@ -1,0 +1,597 @@
+{
+  "verifiedOn": "2026-10-26",
+  "characters": [
+    {
+      "id": "alex",
+      "sha256": "b859c65ffc0fdffab17bbca51130ea8161ef5273ad321f84fde95159e4e5438e",
+      "bytes": 255212,
+      "bindPoseBounds": {
+        "min": [
+          -0.3835841417312622,
+          1.043081283569336e-07,
+          -0.17236123979091644
+        ],
+        "max": [
+          0.3835841417312622,
+          0.6713249683380127,
+          0.1676386147737503
+        ]
+      },
+      "animations": [
+        {
+          "name": "static",
+          "durationSeconds": 0.10000000149011612
+        },
+        {
+          "name": "idle",
+          "durationSeconds": 1.3333333730697632
+        },
+        {
+          "name": "walk",
+          "durationSeconds": 0.6666666865348816
+        },
+        {
+          "name": "sprint",
+          "durationSeconds": 0.5
+        },
+        {
+          "name": "jump",
+          "durationSeconds": 0.5
+        },
+        {
+          "name": "fall",
+          "durationSeconds": 0.3333333432674408
+        },
+        {
+          "name": "crouch",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "sit",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "drive",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "die",
+          "durationSeconds": 0.3333333432674408
+        },
+        {
+          "name": "pick-up",
+          "durationSeconds": 0.3333333432674408
+        },
+        {
+          "name": "emote-yes",
+          "durationSeconds": 0.6666666865348816
+        },
+        {
+          "name": "emote-no",
+          "durationSeconds": 0.6666666865348816
+        },
+        {
+          "name": "holding-right",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "holding-left",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "holding-both",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "holding-right-shoot",
+          "durationSeconds": 0.20000000298023224
+        },
+        {
+          "name": "holding-left-shoot",
+          "durationSeconds": 0.20000000298023224
+        },
+        {
+          "name": "holding-both-shoot",
+          "durationSeconds": 0.20000000298023224
+        },
+        {
+          "name": "attack-melee-right",
+          "durationSeconds": 0.4166666567325592
+        },
+        {
+          "name": "attack-melee-left",
+          "durationSeconds": 0.4166666567325592
+        },
+        {
+          "name": "attack-kick-right",
+          "durationSeconds": 0.5333333611488342
+        },
+        {
+          "name": "attack-kick-left",
+          "durationSeconds": 0.5333333611488342
+        },
+        {
+          "name": "interact-right",
+          "durationSeconds": 0.6666666865348816
+        },
+        {
+          "name": "interact-left",
+          "durationSeconds": 0.6666666865348816
+        },
+        {
+          "name": "wheelchair-sit",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "wheelchair-look-left",
+          "durationSeconds": 0.3333333432674408
+        },
+        {
+          "name": "wheelchair-look-right",
+          "durationSeconds": 0.3333333432674408
+        },
+        {
+          "name": "wheelchair-move-forward",
+          "durationSeconds": 0.5
+        },
+        {
+          "name": "wheelchair-move-back",
+          "durationSeconds": 0.5
+        },
+        {
+          "name": "wheelchair-move-left",
+          "durationSeconds": 0.5
+        },
+        {
+          "name": "wheelchair-move-right",
+          "durationSeconds": 0.5
+        }
+      ],
+      "embeddedTextures": true
+    },
+    {
+      "id": "maya",
+      "sha256": "e9d659be4c98894c87952a0d158b2af8311d7012e25c36013b5f51da727e6929",
+      "bytes": 281740,
+      "bindPoseBounds": {
+        "min": [
+          -0.5493935346603394,
+          1.043081283569336e-07,
+          -0.29189151525497437
+        ],
+        "max": [
+          0.5493935346603394,
+          0.7755283713340759,
+          0.20763878524303436
+        ]
+      },
+      "animations": [
+        {
+          "name": "static",
+          "durationSeconds": 0.10000000149011612
+        },
+        {
+          "name": "idle",
+          "durationSeconds": 1.3333333730697632
+        },
+        {
+          "name": "walk",
+          "durationSeconds": 0.6666666865348816
+        },
+        {
+          "name": "sprint",
+          "durationSeconds": 0.5
+        },
+        {
+          "name": "jump",
+          "durationSeconds": 0.5
+        },
+        {
+          "name": "fall",
+          "durationSeconds": 0.3333333432674408
+        },
+        {
+          "name": "crouch",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "sit",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "drive",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "die",
+          "durationSeconds": 0.3333333432674408
+        },
+        {
+          "name": "pick-up",
+          "durationSeconds": 0.3333333432674408
+        },
+        {
+          "name": "emote-yes",
+          "durationSeconds": 0.6666666865348816
+        },
+        {
+          "name": "emote-no",
+          "durationSeconds": 0.6666666865348816
+        },
+        {
+          "name": "holding-right",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "holding-left",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "holding-both",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "holding-right-shoot",
+          "durationSeconds": 0.20000000298023224
+        },
+        {
+          "name": "holding-left-shoot",
+          "durationSeconds": 0.20000000298023224
+        },
+        {
+          "name": "holding-both-shoot",
+          "durationSeconds": 0.20000000298023224
+        },
+        {
+          "name": "attack-melee-right",
+          "durationSeconds": 0.4166666567325592
+        },
+        {
+          "name": "attack-melee-left",
+          "durationSeconds": 0.4166666567325592
+        },
+        {
+          "name": "attack-kick-right",
+          "durationSeconds": 0.5333333611488342
+        },
+        {
+          "name": "attack-kick-left",
+          "durationSeconds": 0.5333333611488342
+        },
+        {
+          "name": "interact-right",
+          "durationSeconds": 0.6666666865348816
+        },
+        {
+          "name": "interact-left",
+          "durationSeconds": 0.6666666865348816
+        },
+        {
+          "name": "wheelchair-sit",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "wheelchair-look-left",
+          "durationSeconds": 0.3333333432674408
+        },
+        {
+          "name": "wheelchair-look-right",
+          "durationSeconds": 0.3333333432674408
+        },
+        {
+          "name": "wheelchair-move-forward",
+          "durationSeconds": 0.5
+        },
+        {
+          "name": "wheelchair-move-back",
+          "durationSeconds": 0.5
+        },
+        {
+          "name": "wheelchair-move-left",
+          "durationSeconds": 0.5
+        },
+        {
+          "name": "wheelchair-move-right",
+          "durationSeconds": 0.5
+        }
+      ],
+      "embeddedTextures": true
+    },
+    {
+      "id": "jordan",
+      "sha256": "ae60fa001e222c0d2b4f7e44c27e19e53b2eab811ba3597d569d793337b84e1e",
+      "bytes": 271400,
+      "bindPoseBounds": {
+        "min": [
+          -0.3835841417312622,
+          1.043081283569336e-07,
+          -0.18801887333393097
+        ],
+        "max": [
+          0.3835841417312622,
+          0.7927912473678589,
+          0.27263855934143066
+        ]
+      },
+      "animations": [
+        {
+          "name": "static",
+          "durationSeconds": 0.10000000149011612
+        },
+        {
+          "name": "idle",
+          "durationSeconds": 1.3333333730697632
+        },
+        {
+          "name": "walk",
+          "durationSeconds": 0.6666666865348816
+        },
+        {
+          "name": "sprint",
+          "durationSeconds": 0.5
+        },
+        {
+          "name": "jump",
+          "durationSeconds": 0.5
+        },
+        {
+          "name": "fall",
+          "durationSeconds": 0.3333333432674408
+        },
+        {
+          "name": "crouch",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "sit",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "drive",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "die",
+          "durationSeconds": 0.3333333432674408
+        },
+        {
+          "name": "pick-up",
+          "durationSeconds": 0.3333333432674408
+        },
+        {
+          "name": "emote-yes",
+          "durationSeconds": 0.6666666865348816
+        },
+        {
+          "name": "emote-no",
+          "durationSeconds": 0.6666666865348816
+        },
+        {
+          "name": "holding-right",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "holding-left",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "holding-both",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "holding-right-shoot",
+          "durationSeconds": 0.20000000298023224
+        },
+        {
+          "name": "holding-left-shoot",
+          "durationSeconds": 0.20000000298023224
+        },
+        {
+          "name": "holding-both-shoot",
+          "durationSeconds": 0.20000000298023224
+        },
+        {
+          "name": "attack-melee-right",
+          "durationSeconds": 0.4166666567325592
+        },
+        {
+          "name": "attack-melee-left",
+          "durationSeconds": 0.4166666567325592
+        },
+        {
+          "name": "attack-kick-right",
+          "durationSeconds": 0.5333333611488342
+        },
+        {
+          "name": "attack-kick-left",
+          "durationSeconds": 0.5333333611488342
+        },
+        {
+          "name": "interact-right",
+          "durationSeconds": 0.6666666865348816
+        },
+        {
+          "name": "interact-left",
+          "durationSeconds": 0.6666666865348816
+        },
+        {
+          "name": "wheelchair-sit",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "wheelchair-look-left",
+          "durationSeconds": 0.3333333432674408
+        },
+        {
+          "name": "wheelchair-look-right",
+          "durationSeconds": 0.3333333432674408
+        },
+        {
+          "name": "wheelchair-move-forward",
+          "durationSeconds": 0.5
+        },
+        {
+          "name": "wheelchair-move-back",
+          "durationSeconds": 0.5
+        },
+        {
+          "name": "wheelchair-move-left",
+          "durationSeconds": 0.5
+        },
+        {
+          "name": "wheelchair-move-right",
+          "durationSeconds": 0.5
+        }
+      ],
+      "embeddedTextures": true
+    },
+    {
+      "id": "sam",
+      "sha256": "bac262aeaae0e11c4b16cf2f65c70781774d96833f55a27f6db13e0800d80f92",
+      "bytes": 267056,
+      "bindPoseBounds": {
+        "min": [
+          -0.3835841417312622,
+          1.043081283569336e-07,
+          -0.29189151525497437
+        ],
+        "max": [
+          0.3835841417312622,
+          0.7755283713340759,
+          0.20763881504535675
+        ]
+      },
+      "animations": [
+        {
+          "name": "static",
+          "durationSeconds": 0.10000000149011612
+        },
+        {
+          "name": "idle",
+          "durationSeconds": 1.3333333730697632
+        },
+        {
+          "name": "walk",
+          "durationSeconds": 0.6666666865348816
+        },
+        {
+          "name": "sprint",
+          "durationSeconds": 0.5
+        },
+        {
+          "name": "jump",
+          "durationSeconds": 0.5
+        },
+        {
+          "name": "fall",
+          "durationSeconds": 0.3333333432674408
+        },
+        {
+          "name": "crouch",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "sit",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "drive",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "die",
+          "durationSeconds": 0.3333333432674408
+        },
+        {
+          "name": "pick-up",
+          "durationSeconds": 0.3333333432674408
+        },
+        {
+          "name": "emote-yes",
+          "durationSeconds": 0.6666666865348816
+        },
+        {
+          "name": "emote-no",
+          "durationSeconds": 0.6666666865348816
+        },
+        {
+          "name": "holding-right",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "holding-left",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "holding-both",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "holding-right-shoot",
+          "durationSeconds": 0.20000000298023224
+        },
+        {
+          "name": "holding-left-shoot",
+          "durationSeconds": 0.20000000298023224
+        },
+        {
+          "name": "holding-both-shoot",
+          "durationSeconds": 0.20000000298023224
+        },
+        {
+          "name": "attack-melee-right",
+          "durationSeconds": 0.4166666567325592
+        },
+        {
+          "name": "attack-melee-left",
+          "durationSeconds": 0.4166666567325592
+        },
+        {
+          "name": "attack-kick-right",
+          "durationSeconds": 0.5333333611488342
+        },
+        {
+          "name": "attack-kick-left",
+          "durationSeconds": 0.5333333611488342
+        },
+        {
+          "name": "interact-right",
+          "durationSeconds": 0.6666666865348816
+        },
+        {
+          "name": "interact-left",
+          "durationSeconds": 0.6666666865348816
+        },
+        {
+          "name": "wheelchair-sit",
+          "durationSeconds": 0.1666666716337204
+        },
+        {
+          "name": "wheelchair-look-left",
+          "durationSeconds": 0.3333333432674408
+        },
+        {
+          "name": "wheelchair-look-right",
+          "durationSeconds": 0.3333333432674408
+        },
+        {
+          "name": "wheelchair-move-forward",
+          "durationSeconds": 0.5
+        },
+        {
+          "name": "wheelchair-move-back",
+          "durationSeconds": 0.5
+        },
+        {
+          "name": "wheelchair-move-left",
+          "durationSeconds": 0.5
+        },
+        {
+          "name": "wheelchair-move-right",
+          "durationSeconds": 0.5
+        }
+      ],
+      "embeddedTextures": true
+    }
+  ]
+}
