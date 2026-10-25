@@ -43,7 +43,10 @@ try {
   // Ignore unrelated saved Cloudflare configuration; this is an account-free demo tunnel.
   const tunnelEnv = Object.fromEntries(Object.entries(process.env).filter(([key]) => !key.startsWith('TUNNEL_')))
   let command = 'cloudflared'
-  let args = ['tunnel', '--config', '/dev/null', '--no-autoupdate', '--protocol', 'http2', '--url', `http://127.0.0.1:${port}`]
+  const cloudflareConfig = resolve(output, 'cloudflared.yaml')
+  await writeFile(cloudflareConfig, '{}\n')
+  let args = ['tunnel', '--config', cloudflareConfig, '--no-autoupdate', '--protocol', 'http2', '--url', `http://127.0.0.1:${port}`]
+  if (provider === 'cloudflare' && process.env.DEMO_CLOUDFLARE_RELAY === '1') args.push('--quick-service', `http://127.0.0.1:${Number(process.env.DEMO_API_RELAY_PORT) || 15191}`, '--edge', `127.0.0.1:${Number(process.env.DEMO_EDGE_RELAY_PORT) || 17844}`)
   if (provider === 'localhost-run') {
     command = 'ssh'
     args = ['-T', '-o', 'StrictHostKeyChecking=accept-new', '-o', 'UserKnownHostsFile=output/public-demo/known_hosts', '-o', 'ExitOnForwardFailure=yes', '-o', 'ServerAliveInterval=30', '-o', 'ServerAliveCountMax=3', '-o', 'ConnectTimeout=15']
@@ -61,8 +64,8 @@ try {
     const text = chunk.toString()
     appendFile(resolve(output, `${provider}.log`), text).catch(() => {})
     recent = (recent + text).slice(-10000)
-    const match = [...recent.matchAll(/https:\/\/[a-z0-9-]+\.(?:trycloudflare\.com|lhr\.life)/g)].find(candidate => candidate[0] !== 'https://api.trycloudflare.com')
-    if (match && !state.url) {
+    const match = [...recent.matchAll(/https:\/\/[a-z0-9-]+\.(?:trycloudflare\.com|lhr\.life)/g)].filter(candidate => candidate[0] !== 'https://api.trycloudflare.com').at(-1)
+    if (match && match[0] !== state.url) {
       state.url = match[0]
       state.status = 'running'
       saveState().catch(() => {})

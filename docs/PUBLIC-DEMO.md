@@ -1,13 +1,13 @@
 # 临时公网会议入口
 
-`scripts/public-demo.mjs` 把生产构建与会议服务运行在本机 `127.0.0.1:5190`，通过临时 HTTPS 隧道公开。页面、API 与 WebSocket 使用同一个公网域名，不暴露 Vite 开发服务。本机使用无需账号的 localhost.run SSH 隧道；脚本也支持 Cloudflare Quick Tunnel。两者都未购买付费资源。
+`scripts/public-demo.mjs` 把生产构建与会议服务运行在本机 `127.0.0.1:5190`，通过 Cloudflare Quick Tunnel 提供临时 HTTPS 地址。页面、API 与 WebSocket 使用同一个公网域名，不暴露 Vite 开发服务。无需 Cloudflare 账号或付费资源。
 
 ## 启动
 
-先确保安装 Node.js、依赖，并可使用 SSH，然后在项目目录运行：
+先确保安装 Node.js、依赖和 `cloudflared`，然后在可直连 Cloudflare 的网络上运行：
 
 ```bash
-DEMO_TUNNEL=localhost-run node scripts/public-demo.mjs
+node scripts/public-demo.mjs
 ```
 
 这条命令先构建再启动。需要保持终端进程运行。已有经过验证的 `dist/` 时可加 `--skip-build`。默认本机端口为 `5190`，可设置 `DEMO_PORT` 更改。
@@ -16,16 +16,32 @@ DEMO_TUNNEL=localhost-run node scripts/public-demo.mjs
 
 ```bash
 mkdir -p output/public-demo
-DEMO_TUNNEL=localhost-run nohup node scripts/public-demo.mjs --skip-build > output/public-demo/runner.log 2>&1 &
+nohup node scripts/public-demo.mjs --skip-build > output/public-demo/runner.log 2>&1 &
 ```
 
-公开地址显示在日志中，也保存在 `output/public-demo/state.json`。该文件只记录公开地址、进程号和启动时间。`localhost-run.log` 用于排查隧道连接问题。
+公开地址显示在日志中，也保存在 `output/public-demo/state.json`。当前入口以 `state.json` 为准：历史日志可能残留已弃用轮次的旧地址，例如 `runner.log` 里上一轮 localhost.run 方案的 `lhr.life` 地址。该文件只记录公开地址、进程号和启动时间。`cloudflare.log` 用于排查隧道连接问题。
 
-若网络需要现有 HTTP 代理，可额外设置 `DEMO_SSH_PROXY=127.0.0.1:7897`（替换为自己的代理地址）。本机当前采用该配置；脚本不会修改系统代理。SSH 首次连接的主机密钥保存在 `output/public-demo/known_hosts`。
+## 本机的代理网络
+
+本机现有系统代理是 `127.0.0.1:7897`，直接连接 Cloudflare 会超时。`cloudflared` 的临时隧道初始化没有读取常规 HTTP 代理变量，因此本轮使用两个仅监听 loopback 的转发器：一个把隧道初始化请求通过已有代理转发，一个透传 Cloudflare TLS 连接。凭据只在进程内传递，不写入日志或文件；不修改系统网络配置。
+
+先在一个终端保持运行：
+
+```bash
+DEMO_HTTP_PROXY=http://127.0.0.1:7897 node scripts/cloudflare-proxy-relay.mjs
+```
+
+再在另一个终端启动：
+
+```bash
+DEMO_CLOUDFLARE_RELAY=1 node scripts/public-demo.mjs
+```
+
+若换机器，请将代理地址替换为实际可用地址，或在能直连 Cloudflare 时使用普通启动命令。默认初始化转发端口为 `15191`，TLS 转发端口为 `17844`，均只绑定 `127.0.0.1`。
 
 已有独立生产服务时可加 `--external-server --skip-build`，只启动隧道，结束脚本时也不关闭独立服务。本次执行环境使用独立后台 Node 服务和隧道进程；关闭电脑、系统代理或相应进程均可能中断会议。
 
-要使用 Cloudflare，先安装 `cloudflared`，再设置 `DEMO_TUNNEL=cloudflare`。当前机器的直接网络无法连通 Cloudflare 隧道服务，因此本轮没有采用它。
+脚本保留 `DEMO_TUNNEL=localhost-run` 备选，但其匿名免费域名会在进程仍在线时定期轮换。本轮已实际遇到该限制，故不作为持续会议入口使用。
 
 ## 一起开会
 

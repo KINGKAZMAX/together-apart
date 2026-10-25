@@ -13,6 +13,11 @@ dist-ssr
 output
 *.local
 
+# 本地工具生成目录
+.mimosa
+.v2c
+.video_agent
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

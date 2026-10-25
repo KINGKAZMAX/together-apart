@@ -4,7 +4,7 @@
 
 ## 在线演示
 
-[打开会议工作室](https://4fbb40b888a753.lhr.life) · [Figma 设计资产库](https://www.figma.com/design/rYwJyavMnJw3WJAYnmWAh7)
+[打开会议工作室](https://preparing-girls-compaq-invite.trycloudflare.com) · [Figma 设计资产库](https://www.figma.com/design/rYwJyavMnJw3WJAYnmWAh7)
 
 当前是临时 HTTPS 演示入口，本机与隧道须保持在线。三人公网实时交互已检查；仓库保持私密。详见 [公网部署记录](docs/公网部署记录.md)。
 
