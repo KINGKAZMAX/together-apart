@@ -3,8 +3,16 @@
   "sessionId": "f596b373-8a0a-4d41-9eb2-dcb0e8f75145",
   "url": "https://www.figma.com/design/rYwJyavMnJw3WJAYnmWAh7",
   "scope": "full project asset library",
-  "stage": "foundations-created",
-  "pages": {"overview":"0:1","foundations":"3:2","components":"3:3","desktop":"3:4","mobile":"3:5","characters":"3:6","flows":"3:7"},
+  "stage": "complete",
+  "pages": {
+    "overview": "0:1",
+    "foundations": "3:2",
+    "components": "3:3",
+    "desktop": "3:4",
+    "mobile": "3:5",
+    "characters": "3:6",
+    "flows": "3:7"
+  },
   "captures": [
     "49e17cf4-6f5a-4fc3-9ba8-4c146b8c7c80"
   ]

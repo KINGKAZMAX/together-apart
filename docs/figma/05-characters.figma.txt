@@ -1,0 +1,14 @@
+await figma.setCurrentPageAsync(await figma.getNodeByIdAsync('3:6'));
+const root=doc('Character asset library','Four characters. One shared space.','Four character previews, model files, animation inventory and runtime behavior in one place.');
+const roster=section(root,'01 / Character roster','Each character has a separate preview PNG and an animated GLB for the workspace.');
+const row=stack(roster,'Four characters',1328,24,null,true);
+for(const [i,id]of ['alex','maya','jordan','sam'].entries()){
+ const spec=MANIFEST.characters.find(c=>c.id===id),c=card(row,id,314);imageNode(c,'Character / '+id,IMAGES[id],266,180);text(c,spec.name,24,'ink','Medium');text(c,spec.sourceModel,12,'muted');text(c,`Model: public/models/${id}.glb\nPreview: public/models/${id}-preview.png\n${Math.round(spec.bytes/1024)} KB · +Y up · +Z forward\n${spec.animations.length} animation clips`,12,'muted','Regular',266);text(c,i===0?'Default local avatar':'Selectable local / remote avatar',12,'green','Medium',266);
+}
+const usage=section(root,'02 / Animation & runtime contract');
+const ur=stack(usage,'Runtime rules',1328,24,null,true);
+for(const [h,b]of [['Identity','Each participant owns one selected character.\nName and avatar updates sync to peers.\nThe self label is localized as You / 你.'],['Movement','Click ground or use WASD / arrow keys.\nIdle ↔ walk clips blend over 180 ms.\nCamera follows the local participant.'],['Reactions','Nod → ✨ · clap → 👏 · raise → ❓\nBubbles bind to the participant’s selected avatar.\nEach reaction remains visible for 3.5 seconds.']]){const c=card(ur,h,426);text(c,h,18,'ink','Medium');text(c,b,14,'muted','Regular',378);}
+const clips=section(root,'03 / Clip inventory','Each character includes the clips below. Runtime uses idle and walk; additional clips are available for future interactions.');
+text(clips,MANIFEST.characters[0].animations.join('  ·  '),14,'muted','Regular',1328);
+const scene=section(root,'04 / Studio content asset','A discrete Three.js scene render. Furniture, characters, labels and camera live in the runtime scene; app chrome is not baked into this image.');imageNode(scene,'Studio canvas reference',IMAGES.scene,900,692);
+return finish({board:root.id,characters:4,discreteImages:5});

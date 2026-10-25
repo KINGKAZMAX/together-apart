@@ -25,7 +25,7 @@ const text=(parent,value,size=14,key='ink',weight='Regular',width)=>{
 };
 const stack=(parent,name,width,gap=16,key=null,horizontal=false)=>{
  const n=track(figma.createAutoLayout(horizontal?'HORIZONTAL':'VERTICAL'));n.name=name;n.fills=key?[paint(key)]:[];n.itemSpacing=gap;n.primaryAxisAlignItems='MIN';n.counterAxisAlignItems='MIN';
- if(width)n.resize(width,1);if(parent)parent.appendChild(n);n.primaryAxisSizingMode='AUTO';n.counterAxisSizingMode='FIXED';return n;
+ if(width)n.resize(width,1);if(parent)parent.appendChild(n);n.primaryAxisSizingMode=horizontal?'FIXED':'AUTO';n.counterAxisSizingMode=horizontal?'AUTO':'FIXED';return n;
 };
 const pad=(n,p)=>{n.paddingTop=n.paddingBottom=n.paddingLeft=n.paddingRight=p;return n;};
 const rect=(parent,name,w,h,key,r=0)=>{const n=track(figma.createRectangle());n.name=name;n.resize(w,h);fill(n,key);n.cornerRadius=r;parent.appendChild(n);return n;};
