@@ -112,6 +112,7 @@ try {
   assertions.push('Leaving removes the remote avatar and closes peer media')
   await a.getByRole('button', { name: 'Leave', exact: true }).click()
   assert.equal((await state(a)).media.camera, false)
+  await a.close(); await b.close()
   const mobile = await browser.newPage({ viewport: { width: 390, height: 844 } })
   await mobile.goto(origin); await mobile.waitForFunction(() => window.render_game_to_text && JSON.parse(window.render_game_to_text()).modelLoaded)
   assert.equal(await mobile.evaluate(() => document.documentElement.scrollWidth > innerWidth), false)
@@ -123,6 +124,7 @@ try {
   console.log(JSON.stringify(result, null, 2))
 } catch (error) {
   console.error(error)
+  await writeFile('output/meeting-smoke/partial-results.json', JSON.stringify({ assertions, failures, error: String(error) }, null, 2))
   for (const [name, page] of [['a', a], ['b', b]]) {
     await page.screenshot({ path: `output/meeting-smoke/failure-${name}.png`, fullPage: true }).catch(() => {})
     console.log(name, JSON.stringify(await state(page).catch(() => ({})), null, 2))

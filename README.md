@@ -2,6 +2,12 @@
 
 一个非 VR 的 3D 会议工作室。默认英文，可切换中文。使用已选定的四个 Kenney CC0 角色，以 MediaPipe 识别点头、鼓掌和举手，并同步给同一房间的参与者。
 
+## 在线演示
+
+[打开会议工作室](https://4fbb40b888a753.lhr.life) · [Figma 设计资产库](https://www.figma.com/design/rYwJyavMnJw3WJAYnmWAh7)
+
+当前是临时 HTTPS 演示入口，本机与隧道须保持在线。三人公网实时交互已检查；仓库保持私密。详见 [公网部署记录](docs/公网部署记录.md)。
+
 ## 开始运行
 
 需要 Node.js 20.19+（20.x）或 22.12+，建议使用桌面 Chrome。
